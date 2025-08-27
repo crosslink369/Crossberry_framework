@@ -1,19 +1,17 @@
+  $(document).ready(function() {
+    $(".toggle-btn").click(function(e) {
+      e.stopPropagation();
+      let targetId = $(this).data("hidden"); // <-- use custom attribute
 
-$(document).ready(function(){
-  // Toggle the matching box
-  $(".toggle-btn").click(function (e) {
-    e.stopPropagation(); // prevent click from bubbling
-    let targetId = $(this).data("target");
-    $("#" + targetId).toggleClass("hidden");
-  });
+      $(".box").not("#" + targetId).addClass("hidden");
+      $("#" + targetId).toggleClass("hidden");
+    });
 
-  // Prevent clicks inside the box from closing it
-  $(".box").click(function(e){
-    e.stopPropagation();
-  });
+    $(".box").click(function(e) {
+      e.stopPropagation();
+    });
 
-  // Click anywhere outside closes all
-  $(document).click(function(){
-    $(".box").addClass("hidden");
+    $(document).click(function() {
+      $(".box").addClass("hidden");
+    });
   });
-});
