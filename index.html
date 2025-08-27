@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossberry - Modern jQuery Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #764ba2;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #fff;
+            color: #764ba2;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .features {
+            background: white;
+            padding: 80px 0;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #764ba2;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 40px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .showcase {
+            padding: 80px 0;
+            background: #f9f9ff;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 30px auto;
+            max-width: 700px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .demo-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 600px;
+        }
+        
+        .interactive-element {
+            padding: 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: background 0.3s;
+        }
+        
+        footer {
+            background: #2d2d2d;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Crossberry</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#showcase">Showcase</a></li>
+                    <li><a href="#docs">Documentation</a></li>
+                    <li><a href="#download">Download</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Build Modern Websites with Crossberry</h1>
+            <p>A lightweight jQuery framework for creating interactive web experiences with minimal code</p>
+            <a href="#download" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to create amazing websites</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized for performance with minimal overhead. Loads in under 10KB gzipped.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Fully Responsive</h3>
+                    <p>Build websites that look great on all devices from smartphones to desktops.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Easy Customization</h3>
+                    <p>Modular architecture allows you to use only what you need for your project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Interactive Showcase</h2>
+                <p>See Crossberry in action with these live examples</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Click to Toggle</h3>
+                <div class="interactive-element" id="toggleDemo">
+                    <p>Click me to see Crossberry's toggle functionality!</p>
+                </div>
+                <div id="toggleContent" style="display: none;">
+                    <p>🎉 Wow! You just witnessed Crossberry's smooth toggle effect. This is powered by jQuery with custom animations.</p>
+                </div>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Color Changer</h3>
+                <p>Click the buttons below to change the background color of this box</p>
+                <div style="padding: 20px; margin: 15px 0; border-radius: 10px; background: #f0f0f0; min-height: 100px;" id="colorBox">
+                    <p>Watch my background color change!</p>
+                </div>
+                <button class="btn" id="blueBtn">Blue</button>
+                <button class="btn" id="greenBtn">Green</button>
+                <button class="btn" id="orangeBtn">Orange</button>
+            </div>
+            
+            <div class="code-example">
+                <pre><code>// Sample Crossberry code
+$('#toggleDemo').crossberryToggle({
+    target: '#toggleContent',
+    animation: 'fade',
+    duration: 300
+});
+
+$('#blueBtn').crossberryColor({
+    target: '#colorBox',
+    color: '#3366cc'
+});
+
+// Initialize Crossberry components
+$.crossberry.init();</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="download">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get Crossberry</h2>
+                <p>Start building modern websites today</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn" style="margin: 10px;">
+                    <i class="fas fa-download"></i> Download Latest
+                </a>
+                <a href="#" class="btn" style="background: #764ba2; color: white; margin: 10px;">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Install via CDN</h3>
+                <div class="code-example" style="max-width: 800px;">
+                    <pre><code>&lt;!-- Crossberry CSS --&gt;
+&lt;link rel="stylesheet" href="https://cdn.crossberry.com/crossberry.min.css"&gt;
+
+&lt;!-- jQuery and Crossberry JS --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.crossberry.com/crossberry.min.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; color: white;">
+                <i class="fas fa-code"></i>
+                <span>Crossberry</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Examples</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+            <p>&copy; 2023 Crossberry jQuery Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Toggle functionality
+            $('#toggleDemo').click(function() {
+                $('#toggleContent').slideToggle(300);
+            });
+            
+            // Color change functionality
+            $('#blueBtn').click(function() {
+                $('#colorBox').css('background', '#3366cc').css('color', 'white');
+            });
+            
+            $('#greenBtn').click(function() {
+                $('#colorBox').css('background', '#33cc66').css('color', 'white');
+            });
+            
+            $('#orangeBtn').click(function() {
+                $('#colorBox').css('background', '#ff9933').css('color', 'white');
+            });
+            
+            // Smooth scrolling for navigation links
+            $('a[href*="#"]').on('click', function(e) {
+                e.preventDefault();
+                
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+            
+            // Header background change on scroll
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('header').css('background', 'rgba(255, 255, 255, 0.98)');
+                } else {
+                    $('header').css('background', 'rgba(255, 255, 255, 0.95)');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
