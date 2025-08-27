@@ -1,4 +1,4 @@
-  // Load JS dynamically
+ // Load JS dynamically
   function loadScript(url, callback) {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -25,7 +25,7 @@
     document.head.appendChild(link);
   }
   
-  // 1️⃣ Load crossberry jQuery first
+  // Load crossberry jQuery first
   loadScript("https://cbjs.vercel.app/js.min.js", function() {
     console.log("crossberry jQuery loaded!");
     
@@ -33,14 +33,22 @@
     loadScript("https://code.jquery.com/ui/1.13.2/jquery-ui.min.js", function() {
       console.log("jQuery UI loaded!");
       
-      // ✅ Safe to use jQuery UI now
-      $(function() {
-        $("#tabs").tabs();
+      // Then load crossberry.min.js for custom UI interactions
+      loadScript("https://cbjs.vercel.app/crossberry.min.js", function() {
+        console.log("crossberry.min.js loaded!");
+        
+        // After all scripts loaded, it is safe to use jQuery UI tabs and custom toggles
+        $(function() {
+          $("#tabs").tabs();
+          
+          // The toggle button handlers and click outside to close boxes
+          // are implemented inside crossberry.min.js
+        });
       });
     });
   });
   
-  // Load CSS (order doesn’t matter much here)
+  // Load CSS styles
   loadCSS("https://cbjs.vercel.app/crossberry.min.css", function() {
     console.log("CrossBerry CSS loaded!");
   });
