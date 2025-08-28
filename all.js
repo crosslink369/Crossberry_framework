@@ -6,7 +6,8 @@ const resources = {
     "https://unpkg.com/react@18/umd/react.development.js",
     "https://unpkg.com/react-dom@18/umd/react-dom.development.js",
     "https://unpkg.com/@babel/standalone/babel.min.js",
-    "https://cbjs.vercel.app/crossberry.min.js"
+    "https://cbjs.vercel.app/crossberry.min.js",
+    "https://cdn.jsdelivr.net/npm/eruda"
   ],
   "css": [
     "https://cbjs.vercel.app/crossberry.min.css",
